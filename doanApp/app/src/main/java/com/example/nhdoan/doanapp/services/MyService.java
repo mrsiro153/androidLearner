@@ -27,7 +27,7 @@ public class MyService extends Service {
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                Log.e(TAG,"hello timer: "+new Date());
+                //Log.e(TAG,"hello timer: "+new Date());
             }
         }, 2000, 5000);
 

@@ -9,10 +9,9 @@
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".app.App"
@@ -46,17 +45,19 @@
         </activity>
         <activity android:name=".ui.programAc.ProgramingActivity" />
         <activity
-            android:name=".BeaconActivity"
+            android:name=".ui.beaconAc.BeaconActivity"
             android:label="Beacon"
             android:launchMode="singleInstance" />
         <!-- service -->
         <service
             android:name=".services.MyService"
-            android:label="@string/service_name"/>
+            android:label="@string/service_name" />
         <service android:name=".ui.screenRecord.RecordService" />
 
-        <activity android:name=".ui.screenRecord.AudioRecordTest"/>
+        <activity android:name=".ui.screenRecord.AudioRecordTest" />
         <activity android:name=".ui.screenRecord.ScreenRecordActivity" />
+        <activity android:name=".ui.playVideo.ActivityPlayVideo"></activity>
+        <activity android:name=".ui.speechRecognition.ActivityRecognizeSpeech" />
     </application>
 
 </manifest>

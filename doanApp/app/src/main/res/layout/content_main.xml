@@ -79,6 +79,24 @@
         app:layout_constraintTop_toBottomOf="@id/btn_capture_screen"
         android:id="@+id/btn_recording_screen"
         android:text="Start record screen"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_recording_screen"
+        android:text="Play Video"
+        android:id="@+id/btn_play_video"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_play_video"
+        android:text="Voice Detection"
+        android:id="@+id/btn_go_to_speech"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload file"
+        android:id="@+id/btn_upload_file"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_video"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -25,7 +25,6 @@ public class ScreenRecordActivity extends AppCompatActivity {
     private static final int AUDIO_REQUEST_CODE = 103;
 
     private MediaProjectionManager projectionManager;
-    private MediaProjection mediaProjection;
     private RecordService recordService;
     private Button startBtn;
     private ServiceConnection connection = new ServiceConnection() {
@@ -85,7 +84,7 @@ public class ScreenRecordActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECORD_REQUEST_CODE && resultCode == RESULT_OK) {
-            mediaProjection = projectionManager.getMediaProjection(resultCode, data);
+            MediaProjection mediaProjection = projectionManager.getMediaProjection(resultCode, data);
             recordService.setMediaProject(mediaProjection);
             recordService.startRecord();
             startBtn.setText(R.string.stop_record);

@@ -41,4 +41,16 @@ public class MainActivityInteractor implements IMainActivityInteractor{
                         });
         //do nothing here
     }
+
+    @Override
+    public void submitFile(String filePath) {
+        Disposable d = mainActivityRepository.submitFile(filePath)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(next->{
+                    Log.i(TAG_NAME,"submit file success");
+                },err->{
+                    Log.e(TAG_NAME,"Error submit file",err);
+                });
+    }
 }

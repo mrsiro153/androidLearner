@@ -1,4 +1,4 @@
-package com.example.nhdoan.doanapp;
+package com.example.nhdoan.doanapp.ui.beaconAc;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -13,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.nhdoan.doanapp.BeaconActivity;
+import com.example.nhdoan.doanapp.ui.beaconAc.BeaconActivity;
 import com.example.nhdoan.doanapp.R;
 import com.example.nhdoan.doanapp.app.App;
 import com.example.nhdoan.doanapp.broadcastnh.MyBroadCastReceiver;
@@ -21,9 +21,10 @@ import com.example.nhdoan.doanapp.constant.ConstantValue;
 import com.example.nhdoan.doanapp.model.serverResponse.LanguageResponse;
 import com.example.nhdoan.doanapp.popup.PopupActivity;
 import com.example.nhdoan.doanapp.services.MyService;
+import com.example.nhdoan.doanapp.ui.playVideo.ActivityPlayVideo;
 import com.example.nhdoan.doanapp.ui.programAc.ProgramingActivity;
-import com.example.nhdoan.doanapp.ui.screenRecord.AudioRecordTest;
 import com.example.nhdoan.doanapp.ui.screenRecord.ScreenRecordActivity;
+import com.example.nhdoan.doanapp.ui.speechRecognition.ActivityRecognizeSpeech;
 import com.example.nhdoan.doanapp.ultility.ScreenShot;
 import com.google.gson.Gson;
 import com.instacart.library.truetime.extensionrx.TrueTimeRx;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         //
         Button btn = findViewById(R.id.btn_test);
         btn.setOnClickListener(v -> {
-            doSomething2();
+            getRealTime();
         });
         //
         Button btnStartBeacon = findViewById(R.id.btn_start_beacon);
@@ -140,6 +141,21 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         btnRecordScreen.setOnClickListener(v->{
             recordScreen();
         });
+        //
+        Button btnPlayVideo = findViewById(R.id.btn_play_video);
+        btnPlayVideo.setOnClickListener(v->{
+            goToPlayVideo();
+        });
+        //
+        Button btnVoiceDetection = findViewById(R.id.btn_go_to_speech);
+        btnVoiceDetection.setOnClickListener(v->{
+            goToVoiceDetectionScreen();
+        });
+        //
+        Button btnUploadFile = findViewById(R.id.btn_upload_file);
+        btnUploadFile.setOnClickListener(v->{
+            uploadFile();
+        });
 
     }
 
@@ -186,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
     }
 
     //
-    private void doSMTH() {
+    private void timerFunction() {
         //
         CompositeDisposable d = new CompositeDisposable();
         //
@@ -217,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         Log.d(TAG_NAME, "filterTest time 2: " + filterTest);
     }
     //
-    private void doSomething2() {
+    private void getRealTime() {
         Observable.create(it -> {
             it.onNext(getTimethroughInternet());
             it.onComplete();
@@ -285,10 +301,24 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
 
     private void captureScreen(){
         ScreenShot.getScreenShotInstance(this.getApplicationContext()).takeScreenShot(this.findViewById(R.id.btn_capture_screen));
+        //check folder picture
     }
 
     private void recordScreen(){
         Intent i = new Intent(this, ScreenRecordActivity.class);
         startActivity(i);
+    }
+
+    private void goToPlayVideo(){
+        Intent i = new Intent(this, ActivityPlayVideo.class);
+        startActivity(i);
+    }
+
+    private void goToVoiceDetectionScreen(){
+        Intent i = new Intent(this,ActivityRecognizeSpeech.class);
+        startActivity(i);
+    }
+    private void uploadFile(){
+        mainActivityInteractor.submitFile("fdfdfdfd");
     }
 }
