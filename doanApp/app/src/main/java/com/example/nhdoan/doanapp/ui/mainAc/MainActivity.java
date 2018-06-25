@@ -24,6 +24,7 @@ import com.example.nhdoan.doanapp.services.MyService;
 import com.example.nhdoan.doanapp.ui.playVideo.ActivityPlayVideo;
 import com.example.nhdoan.doanapp.ui.programAc.ProgramingActivity;
 import com.example.nhdoan.doanapp.ui.screenRecord.ScreenRecordActivity;
+import com.example.nhdoan.doanapp.ui.slideView.SlideViewActivity;
 import com.example.nhdoan.doanapp.ui.speechRecognition.ActivityRecognizeSpeech;
 import com.example.nhdoan.doanapp.ultility.ScreenShot;
 import com.google.gson.Gson;
@@ -155,6 +156,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         Button btnUploadFile = findViewById(R.id.btn_upload_file);
         btnUploadFile.setOnClickListener(v->{
             uploadFile();
+        });
+        //
+        Button btnOpenSlideView = findViewById(R.id.btn_open_slide_view);
+        btnOpenSlideView.setOnClickListener(v->{
+            openSlideView();
         });
 
     }
@@ -320,5 +326,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
     }
     private void uploadFile(){
         mainActivityInteractor.submitFile("fdfdfdfd");
+    }
+    private void openSlideView(){
+        Intent i = new Intent(this, SlideViewActivity.class);
+        startActivity(i);
     }
 }

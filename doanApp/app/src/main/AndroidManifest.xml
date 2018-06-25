@@ -58,6 +58,7 @@
         <activity android:name=".ui.screenRecord.ScreenRecordActivity" />
         <activity android:name=".ui.playVideo.ActivityPlayVideo"></activity>
         <activity android:name=".ui.speechRecognition.ActivityRecognizeSpeech" />
+        <activity android:name=".ui.slideView.SlideViewActivity" />
     </application>
 
 </manifest>

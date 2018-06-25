@@ -75,4 +75,7 @@ dependencies {
     //speech recognition
     implementation 'com.github.zagum:SpeechRecognitionView:1.2.2'
 
+    //slide comment
+    implementation 'me.relex:circleindicator:1.2.2@aar'
+
 }
