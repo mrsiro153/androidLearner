@@ -1,0 +1,231 @@
+{
+  "project_info": {
+    "project_number": "586248110929",
+    "firebase_url": "https://flextrack-94e31.firebaseio.com",
+    "project_id": "flextrack-94e31",
+    "storage_bucket": "flextrack-94e31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586248110929:android:3e0042315b9313ea",
+        "android_client_info": {
+          "package_name": "com.example.nhdoan.doanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586248110929-ha4s0gnoajbv8bb7hi1ecbnj6lbd8r4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nhdoan.doanapp",
+            "certificate_hash": "936cbfd273218684fd45359bafff81deef260563"
+          }
+        },
+        {
+          "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOY6AF7Gha1O54F_yyRxTomRc9B-MaH68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586248110929:android:dd09845c84e102b3",
+        "android_client_info": {
+          "package_name": "com.example.nhdoan.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586248110929-faq6j3clvi44b404n6ntg6se5q8r8pbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nhdoan.myapplication",
+            "certificate_hash": "936cbfd273218684fd45359bafff81deef260563"
+          }
+        },
+        {
+          "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOY6AF7Gha1O54F_yyRxTomRc9B-MaH68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586248110929:android:dfb6e82195d4db46",
+        "android_client_info": {
+          "package_name": "com.mmsofts.flextrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586248110929-n0fnqj9mtfdcvl0jtkv0phv8dcjaanm7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmsofts.flextrack",
+            "certificate_hash": "936cbfd273218684fd45359bafff81deef260563"
+          }
+        },
+        {
+          "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOY6AF7Gha1O54F_yyRxTomRc9B-MaH68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586248110929:android:02ed4b31c0a84a5e",
+        "android_client_info": {
+          "package_name": "com.mmsofts.flextrack.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586248110929-hs3o6a3maoule84nk1v42v09kv19l5v5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmsofts.flextrack.dev",
+            "certificate_hash": "936cbfd273218684fd45359bafff81deef260563"
+          }
+        },
+        {
+          "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOY6AF7Gha1O54F_yyRxTomRc9B-MaH68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586248110929:android:205549c57d8b1a84",
+        "android_client_info": {
+          "package_name": "com.mmsofts.flextrack.prod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586248110929-ga7jpm2fakvtdq9n8mda70nf915ud5bv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmsofts.flextrack.prod",
+            "certificate_hash": "936cbfd273218684fd45359bafff81deef260563"
+          }
+        },
+        {
+          "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOY6AF7Gha1O54F_yyRxTomRc9B-MaH68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586248110929-6hb1i8mpde3n9uu0qpcg7os0pmgeth4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

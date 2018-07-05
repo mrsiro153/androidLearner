@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import me.relex.circleindicator.CircleIndicator;
-
 public class SlideViewActivity extends AppCompatActivity {
     private static ViewPager mPager;
     private static int currentPage = 0;

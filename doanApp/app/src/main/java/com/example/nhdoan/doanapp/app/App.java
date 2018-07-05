@@ -7,18 +7,22 @@ import android.util.Log;
 import com.example.nhdoan.doanapp.di.DaggerIMyComponent;
 import com.example.nhdoan.doanapp.di.IMyComponent;
 import com.example.nhdoan.doanapp.ui.screenRecord.RecordService;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class App extends Application{
     private final String TAG = "DOANNH";
 
     public IMyComponent daggerIMyComponent;
     private static App application;
+    public FirebaseStorage storage;
 
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
         initial();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        this.storage= storage;
     }
 
     private void initial(){

@@ -3,7 +3,6 @@ package com.example.nhdoan.doanapp.ui.screenRecord;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;

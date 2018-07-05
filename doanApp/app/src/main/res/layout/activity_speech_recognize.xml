@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_play_button" />
+        android:src="@drawable/ic_play_button"
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -41,6 +42,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
-        android:text="ToggleButton" />
+        android:text="ToggleButton"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar1"/>
 
 </android.support.constraint.ConstraintLayout>

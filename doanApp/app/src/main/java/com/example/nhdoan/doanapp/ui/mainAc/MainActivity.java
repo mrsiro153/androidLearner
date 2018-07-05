@@ -3,7 +3,10 @@ package com.example.nhdoan.doanapp.ui.mainAc;
 import android.Manifest;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
@@ -13,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.nhdoan.doanapp.ui.beaconAc.BeaconActivity;
 import com.example.nhdoan.doanapp.R;
 import com.example.nhdoan.doanapp.app.App;
 import com.example.nhdoan.doanapp.broadcastnh.MyBroadCastReceiver;
@@ -21,17 +23,25 @@ import com.example.nhdoan.doanapp.constant.ConstantValue;
 import com.example.nhdoan.doanapp.model.serverResponse.LanguageResponse;
 import com.example.nhdoan.doanapp.popup.PopupActivity;
 import com.example.nhdoan.doanapp.services.MyService;
+import com.example.nhdoan.doanapp.ui.beaconAc.BeaconActivity;
 import com.example.nhdoan.doanapp.ui.playVideo.ActivityPlayVideo;
 import com.example.nhdoan.doanapp.ui.programAc.ProgramingActivity;
 import com.example.nhdoan.doanapp.ui.screenRecord.ScreenRecordActivity;
 import com.example.nhdoan.doanapp.ui.slideView.SlideViewActivity;
 import com.example.nhdoan.doanapp.ui.speechRecognition.ActivityRecognizeSpeech;
 import com.example.nhdoan.doanapp.ultility.ScreenShot;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.instacart.library.truetime.extensionrx.TrueTimeRx;
 
 import org.apache.commons.net.time.TimeTCPClient;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -61,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
 
     @Inject
     Gson gson;
+
+    private static void onClick(android.view.View v) {
+    }
 
     //callback function
 
@@ -139,28 +152,33 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         });
         //
         Button btnRecordScreen = findViewById(R.id.btn_recording_screen);
-        btnRecordScreen.setOnClickListener(v->{
+        btnRecordScreen.setOnClickListener(v -> {
             recordScreen();
         });
         //
         Button btnPlayVideo = findViewById(R.id.btn_play_video);
-        btnPlayVideo.setOnClickListener(v->{
+        btnPlayVideo.setOnClickListener(v -> {
             goToPlayVideo();
         });
         //
         Button btnVoiceDetection = findViewById(R.id.btn_go_to_speech);
-        btnVoiceDetection.setOnClickListener(v->{
+        btnVoiceDetection.setOnClickListener(v -> {
             goToVoiceDetectionScreen();
         });
         //
         Button btnUploadFile = findViewById(R.id.btn_upload_file);
-        btnUploadFile.setOnClickListener(v->{
+        btnUploadFile.setOnClickListener(v -> {
             uploadFile();
         });
         //
         Button btnOpenSlideView = findViewById(R.id.btn_open_slide_view);
-        btnOpenSlideView.setOnClickListener(v->{
+        btnOpenSlideView.setOnClickListener(v -> {
             openSlideView();
+        });
+        //
+        Button btnUploadGoogle = findViewById(R.id.btn_upload_file_to_google_storage);
+        btnUploadGoogle.setOnClickListener(v -> {
+            uploadToGoogleStorage();
         });
 
     }
@@ -192,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         return super.onOptionsItemSelected(item);
     }
 
-    private void initSomeThing(){
+    private void initSomeThing() {
         TrueTimeRx.build()
                 .initialize(Arrays.asList("time.google.com"))
                 .subscribeOn(rx.schedulers.Schedulers.io())
@@ -238,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         filterTest = true;
         Log.d(TAG_NAME, "filterTest time 2: " + filterTest);
     }
+
     //
     private void getRealTime() {
         Observable.create(it -> {
@@ -305,30 +324,59 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         mainActivityInteractor.callToServer();
     }
 
-    private void captureScreen(){
+    private void captureScreen() {
         ScreenShot.getScreenShotInstance(this.getApplicationContext()).takeScreenShot(this.findViewById(R.id.btn_capture_screen));
         //check folder picture
     }
 
-    private void recordScreen(){
+    private void recordScreen() {
         Intent i = new Intent(this, ScreenRecordActivity.class);
         startActivity(i);
     }
 
-    private void goToPlayVideo(){
+    private void goToPlayVideo() {
         Intent i = new Intent(this, ActivityPlayVideo.class);
         startActivity(i);
     }
 
-    private void goToVoiceDetectionScreen(){
-        Intent i = new Intent(this,ActivityRecognizeSpeech.class);
+    private void goToVoiceDetectionScreen() {
+        Intent i = new Intent(this, ActivityRecognizeSpeech.class);
         startActivity(i);
     }
-    private void uploadFile(){
+
+    private void uploadFile() {
         mainActivityInteractor.submitFile("fdfdfdfd");
     }
-    private void openSlideView(){
+
+    private void openSlideView() {
         Intent i = new Intent(this, SlideViewActivity.class);
         startActivity(i);
+    }
+
+    private void uploadToGoogleStorage() {
+        Log.i(TAG_NAME,"DOANNH CURRENT time: "+new Date().toString());
+
+        FirebaseStorage storage = ((App) getApplication()).storage;
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        path += "/abcdef";
+        Log.i(TAG_NAME, "DOANNH path: " + path);
+        Uri uri = Uri.fromFile(new File(path));
+        StorageReference storageReference = storage.getReference().child("videos/" + uri.getLastPathSegment());
+        //
+        storageReference.putFile(uri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.w(TAG_NAME, "DOANNH SUCCESS upload");
+                        Log.i(TAG_NAME,"DOANNH CURRENT time: "+new Date().toString());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG_NAME, "Error", e);
+                    }
+                });
+
     }
 }

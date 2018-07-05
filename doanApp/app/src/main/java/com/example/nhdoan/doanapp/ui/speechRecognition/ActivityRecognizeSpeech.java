@@ -1,8 +1,10 @@
 package com.example.nhdoan.doanapp.ui.speechRecognition;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -80,7 +82,12 @@ public class ActivityRecognizeSpeech extends AppCompatActivity implements Recogn
         switch (requestCode) {
             case REQUEST_RECORD_PERMISSION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    AudioManager manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);//mute *beep* sound
+                    if(manager!=null) {
+                        manager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_PLAY_SOUND);
+                    }
                     speech.startListening(recognizerIntent);
+
                 } else {
                     Toast.makeText(ActivityRecognizeSpeech.this, "Permission Denied!", Toast
                             .LENGTH_SHORT).show();
@@ -135,7 +142,7 @@ public class ActivityRecognizeSpeech extends AppCompatActivity implements Recogn
         returnedText.setText(errorMessage);
         toggleButton.setChecked(false);
         //
-        speech.startListening(recognizerIntent);
+        //speech.startListening(recognizerIntent);
         progressBar.setIndeterminate(true);
     }
 
@@ -165,7 +172,7 @@ public class ActivityRecognizeSpeech extends AppCompatActivity implements Recogn
 
         returnedText.setText(text);
         //
-        speech.startListening(recognizerIntent);
+        //speech.startListening(recognizerIntent);
         progressBar.setIndeterminate(true);
     }
 

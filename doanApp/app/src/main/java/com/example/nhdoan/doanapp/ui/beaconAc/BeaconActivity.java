@@ -15,7 +15,6 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
-
 import java.util.Collection;
 
 public class BeaconActivity extends Activity implements BeaconConsumer {
