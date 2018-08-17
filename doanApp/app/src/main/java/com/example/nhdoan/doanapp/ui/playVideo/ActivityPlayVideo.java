@@ -14,8 +14,11 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
+import com.google.android.exoplayer2.ext.rtmp.RtmpDataSource;
+import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -30,6 +33,8 @@ import com.google.android.exoplayer2.util.Util;
 public class ActivityPlayVideo extends AppCompatActivity {
 
     private static final String url1 = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+    private static final String url2 = "rtmp://red5pro.mmsofts.com/live/NoNameDoctor_1533781754769";
+    private static final String url3 = "http://192.168.10.17:7777/NoNameDoctor_1533800291525.flv";
 
     private VideoPlayerUtil videoPlayerUtil = null;
 
@@ -97,54 +102,16 @@ public class ActivityPlayVideo extends AppCompatActivity {
             ExtractorMediaSource mediaSource = new ExtractorMediaSource(Uri.parse(url),
                     mediaDataSourceFactory, extractorsFactory, null, null);
 
+            //
+            /*RtmpDataSourceFactory rtmpDataSourceFactory = new RtmpDataSourceFactory();
+            MediaSource videoSource = new ExtractorMediaSource.Factory(rtmpDataSourceFactory)
+                    .createMediaSource(Uri.parse(url));
+            player.prepare(videoSource);
+            player.setPlayWhenReady(true);*/
+
             player.prepare(mediaSource);
             //
-            Player.EventListener x = new Player.EventListener(){
-                @Override
-                public void onTimelineChanged(Timeline timeline, Object manifest) {
 
-                }
-
-                @Override
-                public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-
-                }
-
-                @Override
-                public void onLoadingChanged(boolean isLoading) {
-
-                }
-
-                @Override
-                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                    if (playbackState == 4) {//4 means video end
-                        findViewById(R.id.ivPoster).setVisibility(View.VISIBLE);
-                        findViewById(R.id.exoPlayerView).setVisibility(View.INVISIBLE);
-                        //exoPlayerView.hideController()
-                    }
-                }
-
-                @Override
-                public void onRepeatModeChanged(int repeatMode) {
-
-                }
-
-                @Override
-                public void onPlayerError(ExoPlaybackException error) {
-
-                }
-
-                @Override
-                public void onPositionDiscontinuity() {
-
-                }
-
-                @Override
-                public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-
-                }
-            };
-            player.addListener(x);
         }
 
 

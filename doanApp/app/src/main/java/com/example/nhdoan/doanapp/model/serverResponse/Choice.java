@@ -9,23 +9,26 @@ public class Choice {
         return choice;
     }
 
-    public void setChoice(String choice) {
+    public Choice setChoice(String choice) {
         this.choice = choice;
+        return this;
     }
 
     public Integer getVotes() {
         return votes;
     }
 
-    public void setVotes(Integer votes) {
+    public Choice setVotes(Integer votes) {
         this.votes = votes;
+        return this;
     }
 
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public Choice setColor(String color) {
         this.color = color;
+        return this;
     }
 }

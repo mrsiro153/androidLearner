@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
@@ -24,15 +25,18 @@ import com.example.nhdoan.doanapp.model.serverResponse.LanguageResponse;
 import com.example.nhdoan.doanapp.popup.PopupActivity;
 import com.example.nhdoan.doanapp.services.MyService;
 import com.example.nhdoan.doanapp.ui.beaconAc.BeaconActivity;
+import com.example.nhdoan.doanapp.ui.mapActivity.MapsActivity;
+import com.example.nhdoan.doanapp.ui.mapActivity.StreetViewActivity;
 import com.example.nhdoan.doanapp.ui.playVideo.ActivityPlayVideo;
 import com.example.nhdoan.doanapp.ui.programAc.ProgramingActivity;
 import com.example.nhdoan.doanapp.ui.screenRecord.ScreenRecordActivity;
+import com.example.nhdoan.doanapp.ui.slideUpAndDown.SlideUpAndDownActivity;
 import com.example.nhdoan.doanapp.ui.slideView.SlideViewActivity;
 import com.example.nhdoan.doanapp.ui.speechRecognition.ActivityRecognizeSpeech;
 import com.example.nhdoan.doanapp.ultility.ScreenShot;
+import com.example.nhdoan.doanapp.widget.DialogProgramAc;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -47,6 +51,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
     public static final String TAG_NAME = "doanNH";
     public static final String BROADCAST_NAME = "com.example.broadcast.MY_BROADCAST";
     public static final String Key = "ABC";
+    TextToSpeech t1;
 
     public boolean filterTest = true;
 
@@ -180,7 +187,37 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         btnUploadGoogle.setOnClickListener(v -> {
             uploadToGoogleStorage();
         });
-
+        //
+        Button btnTextToSpeech = findViewById(R.id.btn_text_to_speech);
+        btnTextToSpeech.setOnClickListener(v -> {
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, "1");
+            t1.speak("Hello world", TextToSpeech.QUEUE_FLUSH, params);
+        });
+        //
+        Button btnShowListDialog = findViewById(R.id.btn_show_list_dialog_fragment);
+        btnShowListDialog.setOnClickListener(v -> {
+            showListPopup();
+        });
+        //
+        Button btnSlideUpAndDown = findViewById(R.id.btn_open_slide_up_down_ac);
+        btnSlideUpAndDown.setOnClickListener(v -> {
+            Intent i = new Intent(this, SlideUpAndDownActivity.class);
+            startActivity(i);
+            overridePendingTransition(R.anim.slide_down, R.anim.fade_out);
+        });
+        //
+        Button btnGoogleMap = findViewById(R.id.btn_google_map_ex);
+        btnGoogleMap.setOnClickListener(v -> {
+            Intent i = new Intent(this, MapsActivity.class);
+            startActivity(i);
+        });
+        //
+        Button btnGoogleMapStreetView = findViewById(R.id.btn_google_map_street_view);
+        btnGoogleMapStreetView.setOnClickListener(v->{
+            Intent i = new Intent(this, StreetViewActivity.class);
+            startActivity(i);
+        });
     }
 
     @Override
@@ -223,6 +260,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE},
                 ConstantValue.MY_PERMISSIONS_REQUEST_READ_WRITE_EXTERNAL);
+        t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.UK);
+                }
+            }
+        });
     }
 
     //
@@ -354,7 +399,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
     }
 
     private void uploadToGoogleStorage() {
-        Log.i(TAG_NAME,"DOANNH CURRENT time: "+new Date().toString());
+        Log.i(TAG_NAME, "DOANNH CURRENT time: " + new Date().toString());
 
         FirebaseStorage storage = ((App) getApplication()).storage;
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
@@ -368,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Log.w(TAG_NAME, "DOANNH SUCCESS upload");
-                        Log.i(TAG_NAME,"DOANNH CURRENT time: "+new Date().toString());
+                        Log.i(TAG_NAME, "DOANNH CURRENT time: " + new Date().toString());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -378,5 +423,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
                     }
                 });
 
+    }
+
+    //
+    private void showListPopup() {
+        DialogProgramAc.appear(getSupportFragmentManager());
     }
 }

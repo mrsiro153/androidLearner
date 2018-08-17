@@ -112,12 +112,48 @@
             android:layout_height="wrap_content"
             android:text="Open slide view"
             app:layout_constraintTop_toBottomOf="@+id/btn_upload_file" />
+
         <Button
+            android:id="@+id/btn_upload_file_to_google_storage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Up load file to google storage"
-            app:layout_constraintTop_toBottomOf="@id/btn_open_slide_view"
-            android:id="@+id/btn_upload_file_to_google_storage"/>
+            app:layout_constraintTop_toBottomOf="@id/btn_open_slide_view" />
+
+        <Button
+            android:id="@+id/btn_text_to_speech"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Text to SPeech"
+            app:layout_constraintTop_toBottomOf="@+id/btn_upload_file_to_google_storage" />
+
+        <Button
+            android:id="@+id/btn_show_list_dialog_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="open list dialog fragment"
+            app:layout_constraintTop_toBottomOf="@+id/btn_text_to_speech" />
+
+        <Button
+            android:id="@+id/btn_open_slide_up_down_ac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="slide up and down"
+            app:layout_constraintTop_toBottomOf="@+id/btn_show_list_dialog_fragment" />
+
+        <Button
+            android:id="@+id/btn_google_map_ex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GOOGLE MAP EXAMPLE"
+            app:layout_constraintTop_toBottomOf="@+id/btn_show_list_dialog_fragment" />
+
+        <Button
+            android:id="@+id/btn_google_map_street_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GOOGLE MAP STREET VIEW"
+            app:layout_constraintTop_toBottomOf="@+id/btn_google_map_ex" />
 
 
     </android.support.constraint.ConstraintLayout>
