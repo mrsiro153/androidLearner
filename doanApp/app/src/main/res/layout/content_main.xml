@@ -155,6 +155,13 @@
             android:text="GOOGLE MAP STREET VIEW"
             app:layout_constraintTop_toBottomOf="@+id/btn_google_map_ex" />
 
+        <Button
+            android:id="@+id/btn_open_pdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OPEN PDF"
+            app:layout_constraintTop_toBottomOf="@+id/btn_google_map_street_view" />
+
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

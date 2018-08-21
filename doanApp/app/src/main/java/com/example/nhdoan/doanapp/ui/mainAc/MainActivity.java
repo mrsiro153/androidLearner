@@ -27,6 +27,7 @@ import com.example.nhdoan.doanapp.services.MyService;
 import com.example.nhdoan.doanapp.ui.beaconAc.BeaconActivity;
 import com.example.nhdoan.doanapp.ui.mapActivity.MapsActivity;
 import com.example.nhdoan.doanapp.ui.mapActivity.StreetViewActivity;
+import com.example.nhdoan.doanapp.ui.pdfActivity.PdfActivity;
 import com.example.nhdoan.doanapp.ui.playVideo.ActivityPlayVideo;
 import com.example.nhdoan.doanapp.ui.programAc.ProgramingActivity;
 import com.example.nhdoan.doanapp.ui.screenRecord.ScreenRecordActivity;
@@ -216,6 +217,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         Button btnGoogleMapStreetView = findViewById(R.id.btn_google_map_street_view);
         btnGoogleMapStreetView.setOnClickListener(v->{
             Intent i = new Intent(this, StreetViewActivity.class);
+            startActivity(i);
+        });
+        //
+        Button btnOpenPdf = findViewById(R.id.btn_open_pdf);
+        btnOpenPdf.setOnClickListener(v->{
+            Intent i = new Intent(this, PdfActivity.class);
             startActivity(i);
         });
     }
