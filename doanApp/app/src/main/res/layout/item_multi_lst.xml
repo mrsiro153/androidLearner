@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_icon_app"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/icon_app" />
+
+    <TextView
+        android:id="@+id/txt_multi_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello This is a penguin"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_icon_app"
+        app:layout_constraintLeft_toRightOf="@+id/img_icon_app"
+        app:layout_constraintTop_toTopOf="@+id/img_icon_app" />
+
+</android.support.constraint.ConstraintLayout>

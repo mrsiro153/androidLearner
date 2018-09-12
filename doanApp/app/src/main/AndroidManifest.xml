@@ -89,8 +89,8 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".ui.mapActivity.StreetViewActivity"
-            android:label="@string/title_activity_street_view"></activity>
-        <activity android:name=".ui.pdfActivity.PdfActivity" />
+            android:label="@string/title_activity_street_view"/>
+        <activity android:name=".ui.multiList.MultiListItemActivity" />
     </application>
 
 </manifest>

@@ -156,11 +156,18 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_google_map_ex" />
 
         <Button
-            android:id="@+id/btn_open_pdf"
+            android:id="@+id/btn_multi_item_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="OPEN PDF"
+            android:text="Multi Item list"
             app:layout_constraintTop_toBottomOf="@+id/btn_google_map_street_view" />
+
+        <Button
+            android:id="@+id/btn_send_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send EMAIL without email app"
+            app:layout_constraintTop_toBottomOf="@+id/btn_multi_item_list" />
 
 
     </android.support.constraint.ConstraintLayout>

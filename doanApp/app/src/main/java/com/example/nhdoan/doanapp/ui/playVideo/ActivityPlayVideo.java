@@ -34,7 +34,7 @@ public class ActivityPlayVideo extends AppCompatActivity {
 
     private static final String url1 = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
     private static final String url2 = "rtmp://red5pro.mmsofts.com/live/NoNameDoctor_1533781754769";
-    private static final String url3 = "http://192.168.10.17:7777/NoNameDoctor_1533800291525.flv";
+    private static final String url3 = "http://192.168.10.17:7777/NoNameDoctor_1536225378301.flv";
 
     private VideoPlayerUtil videoPlayerUtil = null;
 
@@ -50,7 +50,7 @@ public class ActivityPlayVideo extends AppCompatActivity {
         findViewById(R.id.ivPlay).setOnClickListener(v->{
             findViewById(R.id.posterContainer).setBackgroundColor(Color.BLACK);
             findViewById(R.id.ivPoster).setVisibility(View.GONE);
-            videoPlayerUtil.initializePlayer(findViewById(R.id.exoPlayerView), url1);
+            videoPlayerUtil.initializePlayer(findViewById(R.id.exoPlayerView), url3);
         });
     }
 

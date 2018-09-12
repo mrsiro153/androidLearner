@@ -27,7 +27,7 @@ import com.example.nhdoan.doanapp.services.MyService;
 import com.example.nhdoan.doanapp.ui.beaconAc.BeaconActivity;
 import com.example.nhdoan.doanapp.ui.mapActivity.MapsActivity;
 import com.example.nhdoan.doanapp.ui.mapActivity.StreetViewActivity;
-import com.example.nhdoan.doanapp.ui.pdfActivity.PdfActivity;
+import com.example.nhdoan.doanapp.ui.multiList.MultiListItemActivity;
 import com.example.nhdoan.doanapp.ui.playVideo.ActivityPlayVideo;
 import com.example.nhdoan.doanapp.ui.programAc.ProgramingActivity;
 import com.example.nhdoan.doanapp.ui.screenRecord.ScreenRecordActivity;
@@ -35,6 +35,7 @@ import com.example.nhdoan.doanapp.ui.slideUpAndDown.SlideUpAndDownActivity;
 import com.example.nhdoan.doanapp.ui.slideView.SlideViewActivity;
 import com.example.nhdoan.doanapp.ui.speechRecognition.ActivityRecognizeSpeech;
 import com.example.nhdoan.doanapp.ultility.ScreenShot;
+import com.example.nhdoan.doanapp.ultility.email.GMailSender;
 import com.example.nhdoan.doanapp.widget.DialogProgramAc;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,6 +63,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements IMainActivityPresenter {
@@ -215,15 +217,20 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
         });
         //
         Button btnGoogleMapStreetView = findViewById(R.id.btn_google_map_street_view);
-        btnGoogleMapStreetView.setOnClickListener(v->{
+        btnGoogleMapStreetView.setOnClickListener(v -> {
             Intent i = new Intent(this, StreetViewActivity.class);
             startActivity(i);
         });
         //
-        Button btnOpenPdf = findViewById(R.id.btn_open_pdf);
-        btnOpenPdf.setOnClickListener(v->{
-            Intent i = new Intent(this, PdfActivity.class);
+        Button btnOpenListMultiItem = findViewById(R.id.btn_multi_item_list);
+        btnOpenListMultiItem.setOnClickListener(v -> {
+            Intent i = new Intent(this, MultiListItemActivity.class);
             startActivity(i);
+        });
+        //
+        Button btnSendEmail = findViewById(R.id.btn_send_email);
+        btnSendEmail.setOnClickListener(v -> {
+            sendEmail();
         });
     }
 
@@ -435,5 +442,20 @@ public class MainActivity extends AppCompatActivity implements IMainActivityPres
     //
     private void showListPopup() {
         DialogProgramAc.appear(getSupportFragmentManager());
+    }
+
+    private void sendEmail() {
+        Disposable d = Observable.create(vv -> {
+            GMailSender g = new GMailSender("nhdoan@mmsofts.com", "MMS123456");
+            g.sendMail("For test send email", "Hello world!", "nhdoan", "ndkhoi@mmsofts.com");
+            vv.onNext("");
+            vv.onComplete();
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(sc -> {
+                    Log.w(TAG_NAME, "OK SEND EMAIL SUCCESS");
+                }, er -> {
+                    Log.e(TAG_NAME, "Error send email", er);
+                });
     }
 }
